@@ -78,10 +78,10 @@ print(sum_val)
         * `range(10, 2, -2)` 倒出來的 `i` 為：**10, 8, 6, 4**（不含 2）。
         """)
         st.table([
-            {"目前 i 的值": "10", "i % 3 == 0": "否 (餘2)", "sum_val 的變化": "0"},
-            {"目前 i 的值": "8", "i % 3 == 0": "否 (餘2)", "sum_val 的變化": "0"},
-            {"目前 i 的值": "6", "i % 3 == 0": "是 (整除) ⭐", "sum_val 的變化": "0 + 6 = 6"},
-            {"目前 i 的值": "4", "i % 3 == 0": "否 (餘1)", "sum_val 的變化": "6"}
+            {"Currently i": "10", "i % 3 == 0": "否 (餘2)", "sum_val 的變化": "0"},
+            {"Currently i": "8", "i % 3 == 0": "否 (餘2)", "sum_val 的變化": "0"},
+            {"Currently i": "6", "i % 3 == 0": "是 (整除) ⭐", "sum_val 的變化": "0 + 6 = 6"},
+            {"Currently i": "4", "i % 3 == 0": "否 (餘1)", "sum_val 的變化": "6"}
         ])
 
 with p1_t3:
@@ -179,9 +179,9 @@ print(val)
         st.info("💡 **正確答案：(B) 6**")
         st.markdown("這題屬於標準的三角形疊代。內層的計數次數會隨著外層增加而越來越少：")
         st.table([
-            {"外層 i": "i = 0", "內層 j 範圍 range(0, 3)", "數出數字": "0, 1, 2", "val 增加次數": "增加 3 次"},
-            {"外層 i": "i = 1", "內層 j 範圍 range(1, 3)", "數出數字": "1, 2", "val 增加次數": "增加 2 次"},
-            {"外層 i": "i = 2", "內層 j 範圍 range(2, 3)", "數出數字": "2", "val 增加次數": "增加 1 次"}
+            {"外層 i": "i = 0", "內層 j 範圍 range(i, 3)": "range(0, 3) 👉 數出 0, 1, 2", "val 增加次數": "增加 3 次"},
+            {"外層 i": "i = 1", "內層 j 範圍 range(i, 3)": "range(1, 3) 👉 數出 1, 2", "val 增加次數": "增加 2 次"},
+            {"外層 i": "i = 2", "內層 j 範圍 range(i, 3)": "range(2, 3) 👉 數出 2", "val 增加次數": "增加 1 次"}
         ])
         st.markdown("總計執行次數 = `3 + 2 + 1 = 6` 次，故 `val` 最終為 6。")
 
@@ -248,7 +248,7 @@ for i in range(len(matrix_data)):
     """, language="python")
     
     ans9 = st.radio("請選擇你的答案：", ["(A) 0", "(B) 1", "(C) 2", "(D) 什麼都不會印出"], key="ans9")
-    with st.expander("👀 查看解題桌分析"):
+    with st.expander("👀 查看解題桌 analysis"):
         st.info("💡 **正確答案：(B) 1**")
         st.markdown("""
         **🔍 戰略分析（這題其實是在找這串陣列中『第一個合數(非質數)』的索引位置）：**
@@ -269,7 +269,7 @@ for i in range(1, len(v) - 1):
 print(res)
     """, language="python")
     
-    ans10 = st.radio("請選擇你的答案：", ["(A) 0", "(B) 1", "(C) 2", "(D) 3"], key="ans10")
+    ans10 = st.radio("請选择你的答案：", ["(A) 0", "(B) 1", "(C) 2", "(D) 3"], key="ans10")
     with st.expander("👀 查看解題桌分析"):
         st.info("💡 **正確答案：(C) 2**")
         st.markdown("""
@@ -282,10 +282,140 @@ print(res)
         * 最終結果：2。
         """)
 
+    # --- 多重迴圈高階閱讀練習題 二 ---
+    st.markdown("---")
+    st.markdown("### 📝 課後加碼：雙重迴圈幾何追蹤")
+    mq1, mq2 = st.tabs(["🔥 進階挑戰 一", "🔥 進階挑戰 二"])
+    with mq1:
+        st.markdown("**題目：請問以下程式執行後，變數 `count` 的最終數值是多少？**")
+        st.code("""
+count = 0
+for i in range(1, 4):
+    for j in range(i):
+        count += 1
+print(count)
+        """, language="python")
+        with st.expander("👀 查看人肉電腦分析解答"):
+            st.success("**答案：6**")
+            st.markdown("""
+            * 當 `i = 1`：`j` 範圍是 `range(1)` (數字 0)，內層跑 1 次 👉 `count` 變成 1
+            * 當 `i = 2`：`j` 範圍是 `range(2)` (數字 0, 1)，內層跑 2 次 👉 `count` 變成 3
+            * 當 `i = 3`：`j` 範圍是 `range(3)` (數字 0, 1, 2)，內層跑 3 次 👉 `count` 變成 6
+            * 總共加了：1 + 2 + 3 = 6 次。
+            """)
+    with mq2:
+        st.markdown("**題目：這段程式碼會印出什麼圖形？（注意 `end=''` 代表不換行）**")
+        st.code("""
+for i in range(3, 0, -1):
+    for j in range(i):
+        print("#", end="")
+    print()
+        """, language="python") # 👈 這裡已完美修正為 language="python"
+        with st.expander("👀 查看人肉電腦分析解答"):
+            st.success("**答案：一個倒三角形**")
+            st.code("""
+###
+##
+#
+            """, language="text")
+
 # ==========================================
 # 課程結語
 # ==========================================
 st.divider()
+# ==========================================
+# 階段三：高強度課後自主練習題庫（10題，無詳解）
+# ==========================================
+st.markdown("---")
+st.header("🎯 第三階段：APCS 觀念題自主特訓（足量實戰練習）")
+st.write("本區提供 10 題高仿 APCS 識讀測驗題，無即時詳解，考驗同學們能否獨立用「紙筆變數追蹤法」找出正確答案！")
+
+p3_t1, p3_t2, p3_t3, p3_t4, p3_t5, p3_t6, p3_t7, p3_t8, p3_t9, p3_t10 = st.tabs([
+    "📝 練習 1", "📝 練習 2", "📝 練習 3", "📝 練習 4", "📝 練習 5", 
+    "📝 練習 6", "📝 練習 7", "📝 練習 8", "📝 練習 9", "📝 練習 10"
+])
+
+with p3_t1:
+    st.markdown("#### 【練習 1】字串切片與 range 邊界陷阱")
+    st.code("""
+word = "PROG"
+result = ""
+for i in range(len(word) - 1, 0, -1):
+    result += word[i]
+print(result)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) GORP", "(B) GOR", "(C) RO", "(D) ORP"], key="ex1")
+
+with p3_t2:
+    st.markdown("#### 【練習 2】複合條件篩選與跳格累加")
+    st.code("""
+ans = 0
+for i in range(1, 15, 3):
+    if i % 2 != 0:
+        ans += i
+print(ans)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 12", "(B) 16", "(C) 25", "(D) 22"], key="ex2")
+
+with p3_t3:
+    st.markdown("#### 【練習 3】陣列走訪與動態條件覆蓋")
+    st.code("""
+nums = [4, 2, 7, 1, 9]
+val = nums[0]
+for i in range(1, len(nums)):
+    if nums[i] < val:
+        val = nums[i]
+print(val)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 4", "(B) 9", "(C) 1", "(D) 2"], key="ex3")
+
+with p3_t4:
+    st.markdown("#### 【練習 4】雙指標相鄰差值統計")
+    st.code("""
+A = [10, 15, 12, 18, 20]
+count = 0
+for i in range(len(A) - 1):
+    if A[i+1] - A[i] > 2:
+        count += 1
+print(count)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 1", "(B) 2", "(C) 3", "(D) 4"], key="ex4")
+
+with p3_t5:
+    st.markdown("#### 【練習 5】旗標狀態與反向 break 偵測")
+    st.code("""
+data = [5, 10, 15, 21, 25]
+status = True
+for i in range(len(data)):
+    if data[i] % 2 == 0:
+        status = False
+    if data[i] > 20:
+        break
+print(status)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) True", "(B) False", "(C) None", "(D) 程式出錯"], key="ex5")
+
+with p3_t6:
+    st.markdown("#### 【練習 6】雙重迴圈矩陣次數走訪")
+    st.code("""
+k = 0
+for i in range(1, 4):
+    for j in range(1, 4):
+        if i != j:
+            k += 1
+print(k)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 9", "(B) 6", "(C) 3", "(D) 0"], key="ex6")
+
+with p3_t7:
+    st.markdown("#### 【練習 7】內層結束值受外層變數動態控制")
+    st.code("""
+total = 0
+for i in range(4,
+
+
+
+
 st.subheader("🏁 闕老師特訓章節總結")
 st.success("""
 恭喜你完成了這 10 題高強度的 APCS 程式識讀模擬題！
