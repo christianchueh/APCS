@@ -41,14 +41,15 @@ with st.expander("🧭 知識點一：像高鐵一樣一路到底——循序結
     ##### 📊 循序結構流程圖 (Flowchart)
     """)
     
-    # 使用新版 Markdown 區塊渲染 Mermaid 流程圖
+    # 修正版 Mermaid 語法：節點內容用雙引號包覆，避免特殊字元造成失敗
     st.markdown("""
     ```mermaid
     graph TD
-        A([開始]) --> B[輸入資料 st.text_input]
-        B --> C[數學計算 int/運算子]
-        C --> D[輸出結果 st.write]
+        A([開始]) --> B["輸入資料 (st.text_input)"]
+        B --> C["數學計算 (int / 運算子)"]
+        C --> D["輸出結果 (st.write)"]
         D --> E([結束])
+        
         style A fill:#bfff00,stroke:#333,stroke-width:2px,color:#000
         style E fill:#bfff00,stroke:#333,stroke-width:2px,color:#000
     ```
@@ -109,10 +110,11 @@ with st.expander("🧭 知識點三(下)：如果...就...——單向條件式 
     ##### 📊 單向條件式流程圖
     """)
     
+    # 修正版 Mermaid 語法
     st.markdown("""
     ```mermaid
     graph TD
-        A[檢查條件 Condition] -- True --> B[執行特定程式碼區塊]
+        A{"檢查條件 (Condition)"} -- True --> B[執行特定程式碼區塊]
         A -- False --> C[繼續往下走]
         B --> C
         style A fill:#fffa00,stroke:#333,color:#000
@@ -171,11 +173,12 @@ with st.expander("🧭 知識點四：人生不是二分法——雙向 (If-Else
     ##### 📊 多向條件式流程圖
     """)
     
+    # 修正版 Mermaid 語法：移除節點內多餘的特殊符號與括號
     st.markdown("""
     ```mermaid
     graph TD
-        A[條件 1 成立?] -- Yes --> B[執行區塊 1]
-        A -- No --> C[條件 2 成立?]
+        A{"條件 1 成立?"} -- Yes --> B[執行區塊 1]
+        A -- No --> C{"條件 2 成立?"}
         C -- Yes --> D[執行區塊 2]
         C -- No --> E[執行最終 else 區塊]
         B --> F[繼續往下執行]
@@ -216,7 +219,7 @@ else:
     
     with zj_a053:
         st.markdown("[🔗 前往題目：a053. 得分計分](https://zerojudge.tw/ShowProblem?problemid=a053)")
-        st.info("💡 闕老師提示：這題是經典的階梯式計分。需要用 `elif` 去細分：1-10題、11-20題、21-40題與40題以上的不同給分邏輯。")
+        st.info("💡 闕老師提示：這題是經典的階梯式計分。需要用 `elif` 去細分：1~10題、11~20題、21~40題與40題以上的不同給分邏輯。")
         
     with zj_b758:
         st.markdown("[🔗 前往題目：b758. 牛仔很忙](https://zerojudge.tw/ShowProblem?problemid=b758)")
@@ -239,9 +242,4 @@ st.subheader("🏁 第二課成果驗收與 APCS 邏輯思維建立")
 st.success("""
 太棒了！你已經解開了程式從「直線思考」走向「具備決策能力」的封印。
 在 APCS 的第一題（基礎題）中，幾乎 100% 都需要運用這一課所學到的 `if-elif-else` 來進行資料的分類與統計。
-""")
-
-st.info("""
-### 🧠 本週思維挑戰（挑戰 ZeroJudge 滿分）
-今天我們給出的幾道題目（如牛仔很忙、電視迷），雖然看起來是生活日常，但本質上都是在考驗你對**「數字循環（餘數觀念）與邊界條件（if 判斷點）」**的敏銳度。回家請務必上 ZeroJudge 註冊帳號，並將這幾道題目刷出綠色的 **AC (Accepted)** 標籤！
 """)
