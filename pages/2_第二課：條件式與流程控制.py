@@ -216,7 +216,7 @@ else:
     
     with zj_a053:
         st.markdown("[🔗 前往題目：a053. 得分計分](https://zerojudge.tw/ShowProblem?problemid=a053)")
-        st.info("💡 闕老師提示：這題是經典的階梯式計分。需要用 `elif` 去細分：1~10題、11~20題、21~40題與40題以上的不同給分邏輯。")
+        st.info("💡 闕老師提示：這題是經典的階梯式計分。需要用 `elif` 去細分：1-10題、11-20題、21-40題與40題以上的不同給分邏輯。")
         
     with zj_b758:
         st.markdown("[🔗 前往題目：b758. 牛仔很忙](https://zerojudge.tw/ShowProblem?problemid=b758)")
