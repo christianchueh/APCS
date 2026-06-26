@@ -41,8 +41,9 @@ with st.expander("🧭 知識點一：像高鐵一樣一路到底——循序結
     ##### 📊 循序結構流程圖 (Flowchart)
     """)
     
-    # 運用 Mermaid 畫出清晰的循序流程圖
-    st.mermaid("""
+    # 使用新版 Markdown 區塊渲染 Mermaid 流程圖
+    st.markdown("""
+    ```mermaid
     graph TD
         A([開始]) --> B[輸入資料 st.text_input]
         B --> C[數學計算 int/運算子]
@@ -50,6 +51,7 @@ with st.expander("🧭 知識點一：像高鐵一樣一路到底——循序結
         D --> E([結束])
         style A fill:#bfff00,stroke:#333,stroke-width:2px,color:#000
         style E fill:#bfff00,stroke:#333,stroke-width:2px,color:#000
+    ```
     """)
 
 # ==========================================
@@ -107,12 +109,14 @@ with st.expander("🧭 知識點三(下)：如果...就...——單向條件式 
     ##### 📊 單向條件式流程圖
     """)
     
-    st.mermaid("""
+    st.markdown("""
+    ```mermaid
     graph TD
         A[檢查條件 Condition] -- True --> B[執行特定程式碼區塊]
         A -- False --> C[繼續往下走]
         B --> C
         style A fill:#fffa00,stroke:#333,color:#000
+    ```
     """)
     
     st.markdown("""
@@ -167,7 +171,8 @@ with st.expander("🧭 知識點四：人生不是二分法——雙向 (If-Else
     ##### 📊 多向條件式流程圖
     """)
     
-    st.mermaid("""
+    st.markdown("""
+    ```mermaid
     graph TD
         A[條件 1 成立?] -- Yes --> B[執行區塊 1]
         A -- No --> C[條件 2 成立?]
@@ -178,6 +183,7 @@ with st.expander("🧭 知識點四：人生不是二分法——雙向 (If-Else
         E --> F
         style A fill:#ff9900,stroke:#333,color:#fff
         style C fill:#ff9900,stroke:#333,color:#fff
+    ```
     """)
     
     st.markdown("##### 📄 真實程式範例：成績評等")
@@ -194,7 +200,7 @@ else:
     # --- 關鍵技術解說：多變數輸入 ---
     st.error("🔑 APCS 解題必備核心技術：如何在同一行讀取多個數字？")
     st.markdown("""
-    在接下來的檢定題中，常常會遇到同一行測資用空格隔開兩個數字（例如輸入：`13 25`）。
+    在接下來的檢定題中，經常會遇到同一行測資用空格隔開兩個數字（例如輸入：`13 25`）。
     請全班同學把這行指令記在小本本上，這是未來解題的固定公式：
     """)
     st.code("x, y = [int(i) for i in input().split()]", language="python")
@@ -209,20 +215,20 @@ else:
     ])
     
     with zj_a053:
-        st.markdown("[🔗 前往題目：a053. 💡 得分計分](https://zerojudge.tw/ShowProblem?problemid=a053)")
+        st.markdown("[🔗 前往題目：a053. 得分計分](https://zerojudge.tw/ShowProblem?problemid=a053)")
         st.info("💡 闕老師提示：這題是經典的階梯式計分。需要用 `elif` 去細分：1~10題、11~20題、21~40題與40題以上的不同給分邏輯。")
         
     with zj_b758:
-        st.markdown("[🔗 前往題目：b758. 🤠 牛仔很忙](https://zerojudge.tw/ShowProblem?problemid=b758)")
+        st.markdown("[🔗 前往題目：b758. 牛仔很忙](https://zerojudge.tw/ShowProblem?problemid=b758)")
         st.warning("🔥 注意：本題會在一行內輸入兩個數字，請務必使用上面教的 `x, y = [int(i) for i in input().split()]` 指令來接收喔！")
         st.info("💡 闕老師提示：牛仔辦案需要 2 小時 30 分。將現在的小時加上 2，分鐘加上 30。如果分鐘滿 60 要進位到小時；如果小時滿 24 點要記得歸零！")
         
     with zj_b877:
-        st.markdown("[🔗 前往題目：b877. 📺 我是電視迷](https://zerojudge.tw/ShowProblem?problemid=b877)")
+        st.markdown("[🔗 前往題目：b877. 我是電視迷](https://zerojudge.tw/ShowProblem?problemid=b877)")
         st.info("💡 闕老師提示：電視台只有 0 到 99 台。如果從 A 台到 B 台是順向，直接 `B - A`；如果跨越了 100 台的循環（例如從 90 台轉到 10 台），要想一下怎麼用 `if-else` 或 `%` 來處理距離！")
         
     with zj_c636:
-        st.markdown("[🔗 前往題目：c636. 🐉 十二生肖](https://zerojudge.tw/ShowProblem?problemid=c636)")
+        st.markdown("[🔗 前往題目：c636. 十二生肖](https://zerojudge.tw/ShowProblem?problemid=c636)")
         st.info("💡 闕老師提示：民國年與生肖具有週期性。利用 `(民國年 - 1) % 12` 或類似的餘數計算，再搭配長長的 `if...elif...elif...else` 就能把對應的生肖印出來囉！")
 
 # ==========================================
