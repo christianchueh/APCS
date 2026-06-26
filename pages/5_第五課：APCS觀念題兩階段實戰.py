@@ -336,7 +336,7 @@ p3_t1, p3_t2, p3_t3, p3_t4, p3_t5, p3_t6, p3_t7, p3_t8, p3_t9, p3_t10 = st.tabs(
 ])
 
 with p3_t1:
-    st.markdown("#### 【練習 1】字串切片與 range 邊界陷阱")
+    st.markdown("#### 【練習 1】字串反向切片與 range 邊界陷阱")
     st.code("""
 word = "PROG"
 result = ""
@@ -347,7 +347,7 @@ print(result)
     st.radio("請選擇你的答案：", ["(A) GORP", "(B) GOR", "(C) RO", "(D) ORP"], key="ex1")
 
 with p3_t2:
-    st.markdown("#### 【練習 2】複合條件篩選與跳格累加")
+    st.markdown("#### 【練習 2】複合條件篩選與等差跳格累加")
     st.code("""
 ans = 0
 for i in range(1, 15, 3):
@@ -358,7 +358,7 @@ print(ans)
     st.radio("請選擇你的答案：", ["(A) 12", "(B) 16", "(C) 25", "(D) 22"], key="ex2")
 
 with p3_t3:
-    st.markdown("#### 【練習 3】陣列走訪與動態條件覆蓋")
+    st.markdown("#### 【練習 3】線性走訪與動態極值覆蓋")
     st.code("""
 nums = [4, 2, 7, 1, 9]
 val = nums[0]
@@ -370,7 +370,7 @@ print(val)
     st.radio("請選擇你的答案：", ["(A) 4", "(B) 9", "(C) 1", "(D) 2"], key="ex3")
 
 with p3_t4:
-    st.markdown("#### 【練習 4】雙指標相鄰差值統計")
+    st.markdown("#### 【練習 4】相鄰元素差值統計波動")
     st.code("""
 A = [10, 15, 12, 18, 20]
 count = 0
@@ -382,7 +382,7 @@ print(count)
     st.radio("請選擇你的答案：", ["(A) 1", "(B) 2", "(C) 3", "(D) 4"], key="ex4")
 
 with p3_t5:
-    st.markdown("#### 【練習 5】旗標狀態與反向 break 偵測")
+    st.markdown("#### 【練習 5】旗標生死狀態與提前煞車偵測")
     st.code("""
 data = [5, 10, 15, 21, 25]
 status = True
@@ -396,7 +396,7 @@ print(status)
     st.radio("請選擇你的答案：", ["(A) True", "(B) False", "(C) None", "(D) 程式出錯"], key="ex5")
 
 with p3_t6:
-    st.markdown("#### 【練習 6】雙重迴圈矩陣次數走訪")
+    st.markdown("#### 【練習 6】雙重迴圈對角線排除計數")
     st.code("""
 k = 0
 for i in range(1, 4):
@@ -408,12 +408,62 @@ print(k)
     st.radio("請選擇你的答案：", ["(A) 9", "(B) 6", "(C) 3", "(D) 0"], key="ex6")
 
 with p3_t7:
-    st.markdown("#### 【練習 7】內層結束值受外層變數動態控制")
+    st.markdown("#### 【練習 7】內層結束條件受外層動態控制遞減")
     st.code("""
 total = 0
-for i in range(4,
+for i in range(3, 0, -1):
+    for j in range(i):
+        total += j
+print(total)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 4", "(B) 6", "(C) 3", "(D) 5"], key="ex7")
 
+with p3_t8:
+    st.markdown("#### 【練習 8】內外層雙重索引累加與一維改寫")
+    st.code("""
+vals = [1, 1, 1]
+for i in range(1, len(vals)):
+    vals[i] = vals[i-1] * 2 + i
+print(*vals)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 1 3 7", "(B) 1 2 4", "(C) 1 3 8", "(D) 1 2 5"], key="ex8")
 
+with p3_t9:
+    st.markdown("#### 【練習 9】多重迴圈搭配步長與倍數跳格")
+    st.code("""
+count = 0
+for i in range(2, 5):
+    for j in range(1, 10):
+        if j % i == 0:
+            count += 1
+print(count)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 9", "(B) 8", "(C) 7", "(D) 6"], key="ex9")
+
+with p3_t10:
+    st.markdown("#### 【練習 10】一維陣列動態特徵（夾心餅乾變形題）")
+    st.code("""
+seq = [0, 1, 0, 1, 0, 1, 0]
+match = 0
+for i in range(1, len(seq) - 1):
+    if seq[i] == 1 and (seq[i-1] + seq[i+1] == 0):
+        match += 1
+print(match)
+    """, language="python")
+    st.radio("請選擇你的答案：", ["(A) 0", "(B) 1", "(C) 2", "(D) 3"], key="ex10")
+
+# 闕老師專用後台：可摺疊的隱藏解答密碼表
+with st.sidebar.expander("🔑 闕老師專用：自主特訓標準答案"):
+    st.write("1. (B) GOR")
+    st.write("2. (D) 22")
+    st.write("3. (C) 1")
+    st.write("4. (B) 2")
+    st.write("5. (B) False")
+    st.write("6. (B) 6")
+    st.write("7. (A) 4")
+    st.write("8. (A) 1 3 7")
+    st.write("9. (A) 9")
+    st.write("10. (D) 3")
 
 
 st.subheader("🏁 闕老師特訓章節總結")
