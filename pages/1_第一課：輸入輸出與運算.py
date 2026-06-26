@@ -178,7 +178,9 @@ with st.expander("🧭 知識點五：運算元大全與優先順序"):
 
     # 實作題4
     st.markdown("""
-    ### 🧭 實作題目：[買鉛筆](https://zerojudge.tw/ShowProblem?problemid=d827 買鉛筆) 開始？""")
+    ### 🧭 實作題目：[買鉛筆](https://zerojudge.tw/ShowProblem?problemid=d827)
+    ### 🧭 實作題目：[Hey Jude](https://zerojudge.tw/ShowProblem?problemid=c185)
+    ### 🧭 實作題目：[中華民國萬萬歲](https://zerojudge.tw/ShowProblem?problemid=d049)""")
 
 # ==========================================
 # 知識點六
