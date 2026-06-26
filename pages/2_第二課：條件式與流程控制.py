@@ -7,22 +7,6 @@ st.caption("授課教師：闕河正 老師")
 st.markdown("---")
 
 # ==========================================
-# ⚙️ 宣告一個專門畫 Mermaid 流程圖的函式（免安裝套件，相容性最高）
-# ==========================================
-def draw_mermaid(code, height=250):
-    html_code = f"""
-    <div class="mermaid" style="display: flex; justify-content: center;">
-        {code}
-    </div>
-    <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({{ startOnLoad: true, theme: 'default' }});
-    </script>
-    """
-    st.components.v1.html(html_code, height=height, scrolling=False)
-
-
-# ==========================================
 # 知識點 0：補充說明複合指定運算子
 # ==========================================
 with st.expander("🧭 知識點零：程式碼的縮寫魔法——複合指定運算子", expanded=True):
@@ -58,17 +42,20 @@ with st.expander("🧭 知識點一：像高鐵一樣一路到底——循序結
     ##### 📊 循序結構流程圖 (Flowchart)
     """)
     
-    # 呼叫畫圖函式，繪製循序結構
-    draw_mermaid("""
-    graph TD
-        A([開始]) --> B["輸入資料 (st.text_input)"]
-        B --> C["數學計算 (int / 運算子)"]
-        C --> D["輸出結果 (st.write)"]
-        D --> E([結束])
-        
-        style A fill:#bfff00,stroke:#333,stroke-width:2px,color:#000
-        style E fill:#bfff00,stroke:#333,stroke-width:2px,color:#000
-    """, height=260)
+    # 使用網頁最穩定的 CSS Flexbox 呈現純 HTML 循序流程圖
+    st.components.v1.html("""
+    <div style="display: flex; flex-direction: column; align-items: center; font-family: sans-serif; gap: 10px; padding: 10px;">
+        <div style="background-color: #bfff00; border: 2px solid #333; padding: 8px 20px; border-radius: 20px; font-weight: bold; color: black;">開始</div>
+        <div style="font-size: 18px; color: #555;">⬇️</div>
+        <div style="background-color: #f0f2f6; border: 1px solid #ccc; padding: 10px 15px; border-radius: 4px; color: black; font-size: 14px;">輸入資料 (st.text_input)</div>
+        <div style="font-size: 18px; color: #555;">⬇️</div>
+        <div style="background-color: #f0f2f6; border: 1px solid #ccc; padding: 10px 15px; border-radius: 4px; color: black; font-size: 14px;">數學計算 (int / 運算子)</div>
+        <div style="font-size: 18px; color: #555;">⬇️</div>
+        <div style="background-color: #f0f2f6; border: 1px solid #ccc; padding: 10px 15px; border-radius: 4px; color: black; font-size: 14px;">輸出結果 (st.write)</div>
+        <div style="font-size: 18px; color: #555;">⬇️</div>
+        <div style="background-color: #bfff00; border: 2px solid #333; padding: 8px 20px; border-radius: 20px; font-weight: bold; color: black;">結束</div>
+    </div>
+    """, height=300)
 
 
 # ==========================================
@@ -128,14 +115,22 @@ with st.expander("🧭 知識點三(下)：如果...就...——單向條件式 
     ##### 📊 單向條件式流程圖
     """)
     
-    # 呼叫畫圖函式，繪製單向條件式
-    draw_mermaid("""
-    graph TD
-        A{"檢查條件 (Condition)"} -- True --> B[執行特定程式碼區塊]
-        A -- False --> C[繼續往下走]
-        B --> C
-        style A fill:#fffa00,stroke:#333,color:#000
-    """, height=220)
+    # 使用純網頁樣式取代會漏線的菱形，確保結構方正清晰、100% 不出錯
+    st.components.v1.html("""
+    <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto; border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: #fafafa; color: black;">
+        <div style="text-align: center; font-weight: bold; background: #fffa00; padding: 8px; border: 1px solid #cc0; border-radius: 4px;">❓ 檢查條件 (Condition)</div>
+        <div style="display: flex; justify-content: space-between; padding: 5px 40px; font-weight: bold; color: blue;">
+            <span>🏼 True</span>
+            <span>🏼 False</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="width: 45%; background: #e3f2fd; border: 1px solid #90caf9; padding: 8px; border-radius: 4px; font-size: 13px; text-align: center;">🟢 執行特定程式區塊 (縮排部分)</div>
+            <div style="width: 45%; background: #ffebee; border: 1px solid #ffcdd2; padding: 8px; border-radius: 4px; font-size: 13px; text-align: center;">❌ 跳過不執行</div>
+        </div>
+        <div style="text-align: center; margin-top: 10px; font-size: 18px; color: #555;">⬇️</div>
+        <div style="text-align: center; background: #eee; padding: 6px; border-radius: 4px; font-size: 13px;">繼續往下走共同程式碼</div>
+    </div>
+    """, height=180)
     
     st.markdown("""
     ##### 📄 真實程式範例：
@@ -187,22 +182,27 @@ with st.expander("🧭 知識點四：人生不是二分法——雙向 (If-Else
     * **雙向條件式 (if...else)**：非 A 即 B，如果條件成立做這件事，**否則 (else)** 做另一件事。
     * **多向條件式 (if...elif...else)**：多重選擇，當第一個條件不符合時，再檢查第二個條件 (`elif`)。
     
-    ##### 📊 多向條件式流程圖
+    ##### 📊 多向條件式分流決策圖
     """)
     
-    # 呼叫畫圖函式，繪製多向條件式
-    draw_mermaid("""
-    graph TD
-        A{"條件 1 成立?"} -- Yes --> B[執行區塊 1]
-        A -- No --> C{"條件 2 成立?"}
-        C -- Yes --> D[執行區塊 2]
-        C -- No --> E[執行最終 else 區塊]
-        B --> F[繼續往下執行]
-        D --> F
-        E --> F
-        style A fill:#ff9900,stroke:#333,color:#fff
-        style C fill:#ff9900,stroke:#333,color:#fff
-    """, height=320)
+    # 採用多層表格區塊，完美展現 if -> elif -> else 的樹狀決策分流
+    st.components.v1.html("""
+    <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; border: 1px solid #ccc; padding: 15px; border-radius: 8px; background-color: #fff; color: black; font-size: 14px;">
+        <div style="background: #ff9900; color: white; padding: 8px; text-align: center; font-weight: bold; border-radius: 4px;">第一關：if 條件 1 成立？</div>
+        <div style="display: flex; margin-top: 8px;">
+            <div style="width: 30%; background: #e8f5e9; padding: 10px; border: 1px solid #a5d6a7; text-align: center; border-radius: 4px;">👉 <b>Yes</b><br>執行區塊 1<br>(結束分流)</div>
+            <div style="width: 5%; text-align: center; padding-top: 15px; font-weight: bold; color: red;">No</div>
+            <div style="width: 65%; border-left: 2px dashed #bbb; padding-left: 10px;">
+                <div style="background: #ff9900; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px;">第二關：elif 條件 2 成立？</div>
+                <div style="display: flex; margin-top: 8px;">
+                    <div style="width: 50%; background: #e8f5e9; padding: 8px; border: 1px solid #a5d6a7; text-align: center; border-radius: 4px;">👉 <b>Yes</b><br>執行區塊 2</div>
+                    <div style="width: 10%; text-align: center; padding-top: 10px; font-weight: bold; color: red;">No</div>
+                    <div style="width: 40%; background: #eceff1; padding: 8px; border: 1px solid #b0bec5; text-align: center; border-radius: 4px;">👉 <b>else</b><br>執行最終區塊</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """, height=160)
     
     st.markdown("##### 📄 真實程式範例：成績評等")
     st.code("""
