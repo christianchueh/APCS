@@ -176,6 +176,9 @@ with st.expander("🧭 知識點五：運算元大全與優先順序"):
         c_deg = (float(f_deg) - 32) * 5 / 9
         st.info(f"華氏 {f_deg}°F 換算成攝氏為：`{c_deg:.2f}`°C")
 
+    # 實作題4
+    st.markdown("#### [買鉛筆](https://zerojudge.tw/ShowProblem?problemid=d827 買鉛筆))
+
 # ==========================================
 # 知識點六
 # ==========================================
