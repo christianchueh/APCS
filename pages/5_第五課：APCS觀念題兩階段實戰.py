@@ -355,7 +355,7 @@ for i in range(1, 15, 3):
         ans += i
 print(ans)
     """, language="python")
-    st.radio("請選擇你的答案：", ["(A) 12", "(B) 16", "(C) 25", "(D) 22"], key="ex2")
+    st.radio("請選擇你的答案：", ["(A) 12", "(B) 16", "(C) 21", "(D) 22"], key="ex2")
 
 with p3_t3:
     st.markdown("#### 【練習 3】線性走訪與動態極值覆蓋")
