@@ -20,20 +20,20 @@ st.markdown("""
 """)
 
 st.subheader("💡 1. 核心語法結構")
-st.code("""
+st.code(r"""
 while 條件式:
-    # 当條件式為 True 時，會重複執行這裡的程式碼
+    # 當條件式為 True 時，會重複執行這裡的程式碼
     # 記得要在迴圈內改變條件相關變數，否則會變成「無窮迴圈」死機！
 """, language="python")
 
 st.subheader("📖 經典範例：輸入數字 n，從 n 開始倒數到 0")
 st.markdown("這是一個最標準的非固定次數應用，學生輸入多少，我們就倒數幾次：")
-st.code("""
+st.code(r"""
 n = int(input("請輸入一個正整數："))
 while n >= 0:
     print(n, end=" ")
     n -= 1  # 👈 關鍵！每次都要讓 n 減少，否則會陷入無窮迴圈
-print("\\n倒數結束！")
+print("\n倒數結束！")
 """, language="python")
 
 st.markdown("---")
@@ -60,7 +60,7 @@ st.table([
 st.success("將餘數反過來排列，得到 13 的二進制結果為：`1101`")
 
 with st.expander("👀 點擊查看「十進制轉二進制」範例程式碼"):
-    st.code("""
+    st.code(r"""
 n = int(input())
 if n == 0:
     print(0)
@@ -84,8 +84,8 @@ st.markdown("這兩個控制字是操控迴圈動向的最高權力，無論是 
 col1, col2 = st.columns(2)
 with col1:
     st.markdown("### 💥 `break`（直接炸毀迴圈）")
-    st.error("只要遇到 `break`，**整個迴圈立刻解散**，後面還沒跑的圈數全部取消，直接跳出迴圈外。")
-    st.code("""
+    st.error("壓倒整個迴圈！只要遇到 `break`，**整個迴圈立刻解散**，後面還沒跑的圈數全部取消，直接跳出迴圈外。")
+    st.code(r"""
 # 範例：找出 1~10 中第一個被 7 整除的數
 for i in range(1, 11):
     if i % 7 == 0:
@@ -96,7 +96,7 @@ for i in range(1, 11):
 with col2:
     st.markdown("### 🏃 `continue`（這圈不跑了，跳下一圈）")
     st.warning("遇到 `continue` 時，**只有「當下這一圈」後面還沒寫的程式會被略過**，會立刻去跑「下一圈」。")
-    st.code("""
+    st.code(r"""
 # 範例：印出 1~5，但跳過 3
 for i in range(1, 6):
     if i == 3:
@@ -131,7 +131,7 @@ with zj2:
     * **題目重點**：輸入一個十進制正整數 $N$，求將 $N$ 加上 $1$ 之後，在二進制的世界中會發生「連續幾次的進位」？當輸入 `0` 時結束。
     * **闕老師破題密碼**：
       * **絕對不要**真的把數字轉成字串去加 1，那樣在大量數據時會造成時效超限（TLE）！
-      * 規律：**只要最低位元是 1，加 1 就一定會引發進位，且該位元變 0**。因此題目其實就是問：**「這個數的二進制末尾，連續有幾個 1 ？」**
+      * 規律：**只要最低位元是 1，加 1 就一定會引發進位，且該位元變 0**。因此題目其實就是問：**「這個數의 二進制末尾，連續有幾個 1 ？」**
       * 利用 `while N % 2 == 1:` 檢查最後一位是不是 1。如果是，進位數 `+1`，然後 `N //= 2` 砍掉最後一位，繼續看下一位！
     """)
 
@@ -149,7 +149,7 @@ with zj3:
 # ==========================================
 with st.sidebar.expander("🔑 闕老師後台：ZeroJudge 三題標準解法（參考答案）"):
     st.markdown("#### a132 參考程式碼：")
-    st.code("""
+    st.code(r"""
 import sys
 
 for line in sys.stdin:
@@ -171,7 +171,7 @@ for line in sys.stdin:
     """, language="python")
 
     st.markdown("#### a414 參考程式碼（高效解法）：")
-    st.code("""
+    st.code(r"""
 import sys
 
 for line in sys.stdin:
@@ -187,7 +187,7 @@ for line in sys.stdin:
     """, language="python")
 
     st.markdown("#### a038 參考程式碼：")
-    st.code("""
+    st.code(r"""
 import sys
 
 for line in sys.stdin:
