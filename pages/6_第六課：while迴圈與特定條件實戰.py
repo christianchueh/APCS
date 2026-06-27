@@ -149,4 +149,66 @@ with zj3:
 # ==========================================
 # 老師後台專區（答案卡）
 # ==========================================
-with st.sidebar.expander("🔑 闕老師後台：ZeroJudge 三題標準解法
+with st.sidebar.expander("🔑 闕老師後台：ZeroJudge 三題標準解法（參考答案）"):
+    st.markdown("#### a132 參考程式碼：")
+    st.code("""
+import sys
+
+for line in sys.stdin:
+    n = int(line.strip())
+    if n == 0:
+        break
+    
+    # 開始轉換
+    temp = n
+    binary_str = ""
+    ones_count = 0
+    while temp > 0:
+        bit = temp % 2
+        if bit == 1:
+            ones_count += 1
+        binary_str = str(bit) + binary_str
+        temp //= 2
+        
+    print(f"The parity of {binary_str} is {ones_count} (mod 2).")
+    """, language="python")
+
+    st.markdown("#### a414 參考程式碼（高效解法）：")
+    st.code("""
+import sys
+
+for line in sys.stdin:
+    n = int(line.strip())
+    if n == 0:
+        break
+        
+    carry = 0
+    # 只要末尾是 1，加 1 就一定進位
+    while n % 2 == 1:
+        carry += 1
+        n //= 2  # 移位檢查下一位
+    print(carry)
+    """, language="python")
+
+    st.markdown("#### a038 參考程式碼：")
+    st.code("""
+import sys
+
+for line in sys.stdin:
+    s = line.strip()
+    if not s:
+        continue
+    # 翻轉後轉成整數，int() 會自動拔除開頭的 0
+    ans = int(s[::-1])
+    print(ans)
+    """, language="python")
+
+# ==========================================
+# 課程結語
+# ==========================================
+st.divider()
+st.subheader("🏁 闕老師特訓章節總結")
+st.success("""
+本章節的 `while` 迴圈是挑戰演算法邏輯的起跑點。不論是進位轉換還是解構數字，精準抓出「結束條件」以及「迴圈內部的狀態更新」是絕對不會踩入無窮迴圈的唯一法門。
+帶領學生用紙筆追蹤完這三題，他們的邏輯思考厚度將大幅提升！下課！
+""")
