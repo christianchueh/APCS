@@ -19,7 +19,7 @@ col1, col2 = st.columns([1, 2], gap="large")
 
 with col1:
     # 教師形象區（建議可以替換成老師的個人照片網址）
-    st.image("https://via.placeholder.com/400x400.png?text=Professor+Chueh", use_container_width=True)
+    st.image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlANdTAi4j2wpKH8mES2Sxeh3wI1xiSZLX2wLgnAaGqQ&s=10", use_container_width=True)
     st.markdown("<h3 style='text-align: center;'>闕河正 老師</h3>", unsafe_allow_html=True)
     
     # 榮譽與背景標籤
