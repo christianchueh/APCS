@@ -145,59 +145,7 @@ with zj3:
       * 寫法二（字串偷編法）：利用 Python 超強的字串切片 `[::-1]` 來翻轉，但翻轉後要用 `int()` 將其轉回整數，這樣前面的 00 就會自動被消掉！
     """)
 
-# ==========================================
-# 老師後台專區（答案卡）
-# ==========================================
-with st.sidebar.expander("🔑 闕老師後台：ZeroJudge 三題標準解法（參考答案）"):
-    st.markdown("#### a132 參考程式碼：")
-    st.code(r"""
-import sys
 
-for line in sys.stdin:
-    n = int(line.strip())
-    if n == 0:
-        break
-    
-    temp = n
-    binary_str = ""
-    ones_count = 0
-    while temp > 0:
-        bit = temp % 2
-        if bit == 1:
-            ones_count += 1
-        binary_str = str(bit) + binary_str
-        temp //= 2
-        
-    print(f"The parity of {binary_str} is {ones_count} (mod 2).")
-    """, language="python")
-
-    st.markdown("#### a414 參考程式碼（高效解法）：")
-    st.code(r"""
-import sys
-
-for line in sys.stdin:
-    n = int(line.strip())
-    if n == 0:
-        break
-        
-    carry = 0
-    while n % 2 == 1:
-        carry += 1
-        n //= 2
-    print(carry)
-    """, language="python")
-
-    st.markdown("#### a038 參考程式碼：")
-    st.code(r"""
-import sys
-
-for line in sys.stdin:
-    s = line.strip()
-    if not s:
-        continue
-    ans = int(s[::-1])
-    print(ans)
-    """, language="python")
 
 # ==========================================
 # 課程結語
