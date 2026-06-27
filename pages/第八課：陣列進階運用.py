@@ -163,9 +163,6 @@ with tab_d190:
     )
     
 
-if __name__ == '__main__':
-    main()
-""", language="python")
 
 # ---- Tab: e313 ----
 with tab_e313:
