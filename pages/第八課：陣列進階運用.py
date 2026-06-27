@@ -4,25 +4,25 @@ import streamlit as st
 st.set_page_config(page_title="APCS 第八課：陣列進階運用", layout="wide")
 
 st.title("🚀 APCS 第八課：陣列進階運用")
-st.caption("適用 Python 3.14 環境 | 程式老師專用互動教材")
+st.caption("適用 Python 3.14 環境 | 程式老師專用互動教材（主頁面導覽版）")
+st.markdown("---")
 
-# 建立側邊欄導覽
-page = st.sidebar.radio(
-    "課程目錄",
-    [
-        "1. 統計與極值 (sum, max, min)", 
-        "2. 競賽核心：排序 (sort, sorted)", 
-        "3. 成員檢查與複製 (in, copy)",
-        "🎯 例題 1：d190 3n+1", 
-        "🎯 例題 2：e313 最少相異字母", 
-        "🎯 例題 3：f605 購買力"
-    ]
-)
+# ==========================================
+# 改為在「主頁面」建立大分頁導覽
+# ==========================================
+tab_concept1, tab_concept2, tab_concept3, tab_p1, tab_p2, tab_p3 = st.tabs([
+    "📖 1. 統計與極值", 
+    "📖 2. 競賽核心：排序", 
+    "📖 3. 成員檢查與複製",
+    "🎯 例題 d190", 
+    "🎯 例題 e313", 
+    "🎯 例題 f605"
+])
 
 # ==========================================
 # 1. 統計與極值
 # ==========================================
-if page == "1. 統計與極值 (sum, max, min)":
+with tab_concept1:
     st.header("📊 陣列統計與極值工具")
     st.markdown("在競賽中，我們經常需要快速求出陣列的總和、最大值、最小值，甚至要找出最大值的「索引位置」。")
     
@@ -43,7 +43,7 @@ print(f"總和: {total}, 最大值: {highest} (索引 {max_idx})")
 """, language="python")
 
     st.subheader("🧪 課堂互動觀測站")
-    user_arr_str = st.text_input("輸入一組數字陣列（用空格隔開）：", value="25 88 12 99 43")
+    user_arr_str = st.text_input("輸入一組數字陣列（用空格隔開）：", value="25 88 12 99 43", key="arr_input_1")
     if user_arr_str:
         try:
             arr = [int(x) for x in user_arr_str.split()]
@@ -58,13 +58,13 @@ print(f"總和: {total}, 最大值: {highest} (索引 {max_idx})")
 # ==========================================
 # 2. 競賽核心：排序
 # ==========================================
-elif page == "2. 競賽核心：排序 (sort, sorted)":
+with tab_concept2:
     st.header("⚡ 競賽必備：陣列排序技巧")
     st.markdown("排序是 APCS 的大熱門。Python 內建的 Timsort 演算法時間複雜度為 $O(N \log N)$，在競賽中非常高效。")
     
-    tab1, tab2, tab3 = st.tabs(["基本排序", "自訂條件排序 (Lambda)", "自訂二維陣列排序"])
+    sub_tab1, sub_tab2, sub_tab3 = st.tabs(["基本排序", "自訂條件排序 (Lambda)", "自訂二維陣列排序"])
     
-    with tab1:
+    with sub_tab1:
         st.subheader("`sort()` 與 `sorted()` 的差異")
         st.markdown("* `arr.sort()`：**原地排序**，會直接改變原陣列，不回傳新陣列。\n* `sorted(arr)`：**回傳新陣列**，原陣列保持不變。")
         st.code(r"""
@@ -81,7 +81,7 @@ origin = [5, 2, 9, 1]
 new_arr = sorted(origin) # new_arr=[1, 2, 5, 9], origin=[5, 2, 9, 1]
 """, language="python")
 
-    with tab2:
+    with sub_tab2:
         st.subheader("進階：使用 `key=lambda` 進行複雜排序")
         st.markdown("當陣列內裝的是字串，或我們想依據「特定規則」排序時，`key` 指令是競賽神兵。")
         st.code(r"""
@@ -92,7 +92,7 @@ words.sort(key=lambda x: len(x))
 print(words) # ['kiwi', 'pear', 'apple', 'banana']
 """, language="python")
 
-    with tab3:
+    with sub_tab3:
         st.subheader("APCS 魔王關：多重條件排序")
         st.markdown("例如：學生分數「由大到小」排；若分數相同，則依據學號「由小到大」排。")
         st.code(r"""
@@ -103,18 +103,17 @@ students = [(101, 85), (102, 92), (103, 85), (104, 95)]
 students.sort(key=lambda x: (-x[1], x[0]))
 
 print(students)
-# 輸出: [(104, 95), (101, 85), (103, 85), (102, 92) 的分數高於85，所以102在前面...]
 # 正確輸出順序應為：[(104, 95), (102, 92), (101, 85), (103, 85)]
 """, language="python")
 
 # ==========================================
 # 3. 成員檢查與複製
 # ==========================================
-elif page == "3. 成員檢查與複製 (in, copy)":
+with tab_concept3:
     st.header("🔍 成員檢查與陣列複製陷阱")
     
     st.subheader("1. 成員檢查 `in` 與 `not in`")
-    st.markdown("檢查某個元素是否存在於陣列中，時間複雜度為 $O(N)$（若重視效率，大數據競賽題通常會改用 `set`）。")
+    st.markdown("檢查某個元素是否存在於陣列中，時間複雜度為 $O(N)$。")
     st.code(r"""
 lucky_numbers = [7, 13, 22, 88]
 if 7 in lucky_numbers:
@@ -125,7 +124,7 @@ if 99 not in lucky_numbers:
 """, language="python")
 
     st.subheader("2. 陣列複製的致命陷阱 `copy` vs `deepcopy`")
-    st.error("⚠️ 競賽警訊：在 Python 中直接使用 `b = a` 並不是複製，而是「建立參照（捷徑）」。修改 `b` 的同時 `a` 也會被修改！")
+    st.error("⚠️ 競賽警訊：在 Python 中直接使用 `b = a` 並不是複製，而是「建立參照」。修改 `b` 的同時 `a` 也會被修改！")
     
     st.code(r"""
 import copy
@@ -149,7 +148,7 @@ matrix_c = copy.deepcopy(matrix_a)
 # ==========================================
 # 例題 1：d190
 # ==========================================
-elif page == "🎯 例題 1：d190 3n+1":
+with tab_p1:
     st.header("🎯 例題：d190 - 3n+1")
     st.markdown("🔗 [ZeroJudge d190 題目連結](https://zerojudge.tw/ShowProblem?problemid=d190)")
     
@@ -160,7 +159,7 @@ elif page == "🎯 例題 1：d190 3n+1":
         "1. 題目會給定一組受測者的年齡資料，資料量可能很大。\n"
         "2. 我們的任務是將這些年齡「由小到大」依序輸出。\n"
         "3. **核心工具**：這題是經典的排序應用。讀入整組陣列後，直接使用高效的 `.sort()` 或 `sorted()` 進行排序即可。\n"
-        "4. **優化小步撇步**：因為測資可能很多，輸出時可以使用 `' '.join(map(str, arr))` 來加速印出結果。"
+        "4. **優化小撇步**：因為測資可能很多，輸出時可以使用 `' '.join(map(str, arr))` 來加速印出結果。"
     )
     
     st.subheader("📝 學生實作填空練習區")
@@ -196,11 +195,11 @@ if __name__ == '__main__':
 # ==========================================
 # 例題 2：e313
 # ==========================================
-elif page == "🎯 例題 2：e313 最少相異字母":
+with tab_p2:
     st.header("🎯 例題：e313 最少相異字母")
     st.markdown("🔗 [ZeroJudge e313 題目連結](https://zerojudge.tw/ShowProblem?problemid=e313)")
     
-    st.subheader("💡 老師的解題思維引導")
+    st.subheader("💡 老師的解題思靈引導")
     st.warning("請注意：此處僅提供演算法核心想法，請同學依據提示自行完成程式。")
     st.info(
         "**解題想法**：\n"
@@ -235,8 +234,8 @@ if __name__ == '__main__':
 # ==========================================
 # 例題 3：f605
 # ==========================================
-elif page == "🎯 例題 3：f605 購買力":
-    st.header("🎯 例題：f605 購買力 (APCS 2020年10月實作題一)")
+with tab_p3:
+    st.header("🎯 例題：f605 購買力")
     st.markdown("🔗 [ZeroJudge f605 題目連結](https://zerojudge.tw/ShowProblem?problemid=f605)")
     
     st.subheader("💡 老師的解題思維引導")
