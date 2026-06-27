@@ -55,8 +55,8 @@ matrix = [
 ]
 
 # 走訪每一列
-for row in matrix:
-    print(row)
+for row in range(len(matrix)):
+    print(matrix[row])
 
 # 終端機輸出：
 # [10, 20, 30]
@@ -64,8 +64,8 @@ for row in matrix:
 # [70, 80, 90]
 """, language="python")
 
-st.subheader("📝 學生填空練習：依序印出陣列中的「每一個具體資料（剝繭抽絲）」")
-st.markdown("請引導學生思考：如何用**雙重迴圈**，把中括號完全剝除，依序印出 9 個獨立的數字？")
+st.subheader("📝 填空練習：依序印出陣列中的「每一個具體資料（剝繭抽絲）」")
+st.markdown("請思考：如何用**雙重迴圈**，把中括號完全剝除，依序印出 9 個獨立的數字？")
 
 st.code(r"""
 matrix = [
@@ -76,10 +76,6 @@ matrix = [
 
 # ===== 請同學在下方補全雙重迴圈程式碼 =====
 # 提示：外層迴圈控制「列(row)」，內層迴圈負責把該列的「元素(item)」一個個拿出來
-for row in matrix:
-    for item in row:
-        print(item, end=" ")
-    print() # 換列
 
 # 預期輸出結果：
 # 10 20 30 
