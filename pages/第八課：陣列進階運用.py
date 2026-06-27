@@ -1,28 +1,32 @@
 import streamlit as st
 
-# 設定網頁標題與風格
+# 設定網頁標題與風格（設定為 wide 滿版模式）
 st.set_page_config(page_title="APCS 第八課：陣列進階運用", layout="wide")
 
 st.title("🚀 APCS 第八課：陣列進階運用")
-st.caption("適用 Python 3.14 環境 | 程式老師專用互動教材（主頁面導覽版）")
+st.caption("適用 Python 3.14 環境 | 程式老師專用互動教材（純主頁面導覽版）")
 st.markdown("---")
 
 # ==========================================
-# 改為在「主頁面」建立大分頁導覽
+# 🗺️ 徹底移出側邊欄！在主頁面正上方建立「橫向導覽列」
 # ==========================================
-tab_concept1, tab_concept2, tab_concept3, tab_p1, tab_p2, tab_p3 = st.tabs([
-    "📖 1. 統計與極值", 
-    "📖 2. 競賽核心：排序", 
-    "📖 3. 成員檢查與複製",
+menu_options = [
+    "📊 1. 統計與極值", 
+    "⚡ 2. 競賽核心：排序", 
+    "🔍 3. 成員檢查與複製",
     "🎯 例題 d190", 
     "🎯 例題 e313", 
     "🎯 例題 f605"
-])
+]
+
+# 使用 horizontal=True 讓 radio 按鈕強迫橫向排列在主畫面上方
+page = st.radio("📂 課程目錄選單：", menu_options, horizontal=True)
+st.markdown("---")
 
 # ==========================================
 # 1. 統計與極值
 # ==========================================
-with tab_concept1:
+if page == "📊 1. 統計與極值":
     st.header("📊 陣列統計與極值工具")
     st.markdown("在競賽中，我們經常需要快速求出陣列的總和、最大值、最小值，甚至要找出最大值的「索引位置」。")
     
@@ -58,10 +62,11 @@ print(f"總和: {total}, 最大值: {highest} (索引 {max_idx})")
 # ==========================================
 # 2. 競賽核心：排序
 # ==========================================
-with tab_concept2:
+elif page == "⚡ 2. 競賽核心：排序":
     st.header("⚡ 競賽必備：陣列排序技巧")
     st.markdown("排序是 APCS 的大熱門。Python 內建的 Timsort 演算法時間複雜度為 $O(N \log N)$，在競賽中非常高效。")
     
+    # 子內容我們可以用 tabs 來在主頁面內部分流
     sub_tab1, sub_tab2, sub_tab3 = st.tabs(["基本排序", "自訂條件排序 (Lambda)", "自訂二維陣列排序"])
     
     with sub_tab1:
@@ -103,13 +108,13 @@ students = [(101, 85), (102, 92), (103, 85), (104, 95)]
 students.sort(key=lambda x: (-x[1], x[0]))
 
 print(students)
-# 正確輸出順序應為：[(104, 95), (102, 92), (101, 85), (103, 85)]
+# 正確輸出順序為：[(104, 95), (102, 92), (101, 85), (103, 85)]
 """, language="python")
 
 # ==========================================
 # 3. 成員檢查與複製
 # ==========================================
-with tab_concept3:
+elif page == "🔍 3. 成員檢查與複製":
     st.header("🔍 成員檢查與陣列複製陷阱")
     
     st.subheader("1. 成員檢查 `in` 與 `not in`")
@@ -148,7 +153,7 @@ matrix_c = copy.deepcopy(matrix_a)
 # ==========================================
 # 例題 1：d190
 # ==========================================
-with tab_p1:
+elif page == "🎯 例題 d190":
     st.header("🎯 例題：d190 - 3n+1")
     st.markdown("🔗 [ZeroJudge d190 題目連結](https://zerojudge.tw/ShowProblem?problemid=d190)")
     
@@ -195,11 +200,11 @@ if __name__ == '__main__':
 # ==========================================
 # 例題 2：e313
 # ==========================================
-with tab_p2:
+elif page == "🎯 例題 e313":
     st.header("🎯 例題：e313 最少相異字母")
     st.markdown("🔗 [ZeroJudge e313 題目連結](https://zerojudge.tw/ShowProblem?problemid=e313)")
     
-    st.subheader("💡 老師的解題思靈引導")
+    st.subheader("💡 老師的解題思維引導")
     st.warning("請注意：此處僅提供演算法核心想法，請同學依據提示自行完成程式。")
     st.info(
         "**解題想法**：\n"
@@ -234,7 +239,7 @@ if __name__ == '__main__':
 # ==========================================
 # 例題 3：f605
 # ==========================================
-with tab_p3:
+elif page == "🎯 例題 f605":
     st.header("🎯 例題：f605 購買力")
     st.markdown("🔗 [ZeroJudge f605 題目連結](https://zerojudge.tw/ShowProblem?problemid=f605)")
     
