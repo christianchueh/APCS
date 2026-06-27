@@ -23,7 +23,7 @@ print(res)
 
 q1_ans = st.radio(
     "請選擇答案：",
-    ["(A) 'y_0'", "(B) 'htP_02'", "(C) 'hP_2'", "(D) 'yP0'"],
+    ["(A) 'y_0'", "(B) 'htP_02'", "(C) 'tP60S'", "(D) 'yP0'"],
     index=None,
     key="q1"
 )
