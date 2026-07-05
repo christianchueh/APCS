@@ -264,26 +264,95 @@ b = 5
 ans = (a > 5) and (b == 3)
 print(ans)
         """, language="python")
-        
         q3_1 = st.radio("請問最終印出的 `ans` 是什麼？", ["請選擇答案...", "True", "False", "10", "5"], key="q3_1")
         
-        # 優化：當學生選擇了答案，才顯示解析按鈕或提示
         if q3_1 != "請選擇答案...":
             if q3_1 == "False":
                 st.success("🎉 太棒了！答對了！")
             else:
                 st.error("❌ 差一點點！再想想看？")
-                
             with st.expander("🔍 查看【題一解析】"):
                 st.write("**正確答案：`False`**")
-                st.markdown("""
-                > **解析**：
-                > 1. `a > 5` -> `10 > 5` 成立，得到 **`True`**。
-                > 2. `b == 3` -> `5 == 3` 不成立，得到 **`False`**。
-                > 3. `True and False` 結果為 **`False`**（`and` 只要有一邊錯就是錯）。
-                """)
+                st.markdown("> **解析**：\n> 1. `a > 5` -> `10 > 5` 成立，得到 **`True`**。\n> 2. `b == 3` -> `5 == 3` 不成立，得到 **`False`**。\n> 3. `True and False` 結果為 **`False`**（`and` 只要有一邊錯就是錯）。")
 
-    # --- 題六 (示範 LaTeX 修正與防呆) ---
+    # --- 題二 ---
+    with tabs[1]:
+        st.markdown("##### 📝 閱讀思考題：`or` 的一線生機")
+        st.code("""
+score = 45
+is_teacher_pet = True
+pass_lesson = (score >= 60) or is_teacher_pet
+print(pass_lesson)
+        """, language="python")
+        q3_2 = st.radio("請問最終印出的結果是什麼？", ["請選擇答案...", "True", "False", "45", "報錯（Error）"], key="q3_2")
+        
+        if q3_2 != "請選擇答案...":
+            if q3_2 == "True":
+                st.success("🎉 太棒了！答對了！")
+            else:
+                st.error("❌ 差一點點！再想想看？")
+            with st.expander("🔍 查看【題二解析】"):
+                st.write("**正確答案：`True`**")
+                st.markdown("> **解析**：\n> 1. `score >= 60` -> `45 >= 60` 得到 **`False`**。\n> 2. `is_teacher_pet` 為 **`True`**。\n> 3. `False or True` 最終得到 **`True`**（`or` 只要有一邊對就全對）。")
+
+    # --- 題三 ---
+    with tabs[2]:
+        st.markdown("##### 📝 閱讀思考題：`not` 的反轉魔法")
+        st.code("""
+age = 15
+is_minor = not (age >= 18)
+print(is_minor)
+        """, language="python")
+        q3_3 = st.radio("請問最終印出的結果是什麼？", ["請選擇答案...", "True", "False", "15", "18"], key="q3_3")
+        
+        if q3_3 != "請選擇答案...":
+            if q3_3 == "True":
+                st.success("🎉 太棒了！答對了！")
+            else:
+                st.error("❌ 差一點點！再想想看？")
+            with st.expander("🔍 查看【題三解析】"):
+                st.write("**正確答案：`True`**")
+                st.markdown("> **解析**：\n> 1. 內層 `age >= 18` -> `15 >= 18` 得到 **`False`**。\n> 2. 外層 `not False` 反轉後得到 **`True`**。")
+
+    # --- 題四 ---
+    with tabs[3]:
+        st.markdown("##### 📝 閱讀思考題：不等於 `!=` 的邏輯轉折")
+        st.code("""
+num = 12
+result = (num % 3 != 0) or (num > 10)
+print(result)
+        """, language="python")
+        q3_4 = st.radio("請問最終印出的結果是什麼？", ["請選擇答案...", "True", "False", "0", "12"], key="q3_4")
+        
+        if q3_4 != "請選擇答案...":
+            if q3_4 == "True":
+                st.success("🎉 太棒了！答對了！")
+            else:
+                st.error("❌ 差一點點！再想想看？")
+            with st.expander("🔍 查看【題四解析】"):
+                st.write("**正確答案：`True`**")
+                st.markdown("> **解析**：\n> 1. `num % 3` 得到 `0`。比較算式 `0 != 0`（0不等於0）不成立，得到 **`False`**。\n> 2. 後半段 `num > 10` -> `12 > 10` 成立，得到 **`True`**。\n> 3. `False or True` 得到 **`True`**。")
+
+    # --- 題五 ---
+    with tabs[4]:
+        st.markdown("##### 📝 閱讀思考題：Python 獨門絕活「連續比較」")
+        st.code("""
+x = 7
+result = 5 < x < 10
+print(result)
+        """, language="python")
+        q3_5 = st.radio("請問這段程式在 Python 中會如何？", ["請選擇答案...", "True", "False", "報錯（不允許連續比較）", "7"], key="q3_5")
+        
+        if q3_5 != "請選擇答案...":
+            if q3_5 == "True":
+                st.success("🎉 太棒了！答對了！")
+            else:
+                st.error("❌ 差一點點！再想想看？")
+            with st.expander("🔍 查看【題五解析】"):
+                st.write("**正確答案：`True`**")
+                st.markdown("> **解析**：許多程式語言不允許這樣寫，但 **Python 完美支援連續比較**！`5 < x < 10` 在後台等同於 `(5 < x) and (x < 10)`。因為 7 確實介於 5 到 10 之間，所以兩邊皆為 True，結果為 **`True`**。")
+
+    # --- 題六 ---
     with tabs[5]:
         st.markdown("##### 📝 閱讀思考題：and 與 or 的驚悚優先權")
         st.code("""
@@ -298,17 +367,58 @@ print(result)
                 st.success("🎉 觀念很紮實喔！沒被挖坑給騙了！")
             else:
                 st.error("❌ 掉進 APCS 的經典優先權陷阱了！")
-                
             with st.expander("🔍 查看【題六解析】"):
                 st.write("**正確答案：`True`**")
-                st.markdown("""
-                > **解析**：**`and` 的優先級比 `or` 高**！
-                > 1. 電腦會先處理後半段的 `False and False` -> 得到 `False`。
-                > 2. 算式簡化成 `True or False` -> 最終得到 **`True`**。
-                > 
-                > 如果這題從左到右算就會錯，APCS 超愛挖這個坑！
-                """)
+                st.markdown("> **解析**：**`and` 的優先級比 `or` 高**！\n> 1. 電腦會先處理後半段的 `False and False` -> 得到 `False`。\n> 2. 算式簡化成 `True or False` -> 最終得到 **`True`**。\n> 如果這題從左到右算就會錯，APCS 超愛挖這個坑！")
 
+    # --- 題七 ---
+    with tabs[6]:
+        st.markdown("##### 📝 閱讀思考題：字串與數字的大崩潰陷阱")
+        st.code("""
+a = "10"
+b = 5
+result = (a > b)
+print(result)
+        """, language="python")
+        q3_7 = st.radio("請問這段程式會輸出什麼？", ["請選擇答案...", "True", "False", "程式大崩潰（TypeError）", "10"], key="q3_7")
+        
+        if q3_7 != "請選擇答案...":
+            if q3_7 == "程式大崩潰（TypeError）":
+                st.success("🎉 厲害！一眼看出型別錯誤的陷阱！")
+            else:
+                st.error("❌ 踢到鐵板了吧！再仔細看資料型態！")
+            with st.expander("🔍 查看【題七解析】"):
+                st.write("**正確答案：`程式大崩潰（TypeError）`**")
+                st.markdown("> **解析**：踢到鐵板了吧！`a` 是**字串（文字）** `"10"`，而 `b` 是**整數（數字）** `5`。在 Python 中，**不同型別的生物是無法直接用 `>`, `<`, `>=`, `<=` 來比較大小的**！程式會立刻噴出 `TypeError` 錯誤。")
+
+    # --- 題八 ---
+    with tabs[7]:
+        st.markdown("##### 📝 閱讀思考題：APCS 綜合大亂鬥（終極挑戰）")
+        st.code("""
+x = 8
+y = 15
+ans = not (x * 2 == y + 1) or (y % x == 7) and (x > 5)
+print(ans)
+        """, language="python")
+        q3_8 = st.radio("試著當看看電腦，最後算出的結果是？", ["請選擇答案...", "True", "False", "報錯", "23"], key="q3_8")
+        
+        if q3_8 != "請選擇答案...":
+            if q3_8 == "True":
+                st.success("🎉 太神啦！終極挑戰關卡成功破關！")
+            else:
+                st.error("❌ 大軍亂了陣腳！重新拆解三路大軍看看？")
+            with st.expander("🔍 查看【題八解析】"):
+                st.write("**正確答案：`True`**")
+                st.markdown("""
+                > **我們分三路大軍擊破它：**
+                > 1. **第一部分**：`not (x * 2 == y + 1)` -> `not (16 == 16)` -> `not True` 得到 **`False`**。
+                > 2. **第二部分**：`(y % x == 7)` -> `15 % 8` 餘數是 `7`，`7 == 7` 成立，得到 **`True`**。
+                > 3. **第三部分**：`(x > 5)` -> `8 > 5` 成立，得到 **`True`**。
+                > 
+                > **大融合時間（算式簡化為：`False or True and True`）：**
+                > * `and` 優先！先算後半段：`True and True` 得到 **`True`**。
+                > * 最後算 `or`：`False or True` 最終得到 **`True`**！
+                """)
 
 # ==========================================
 # 知識點 3-2：單向條件式與 ZeroJudge 實作
