@@ -400,8 +400,8 @@ with st.expander("🧭 知識點七：脫離網頁——認識 APCS 標準指令
     st.markdown("""
     雖然我們用 Streamlit 學得很開心，但未來的 APCS 檢定系統是**沒有網頁介面**的！
     我們必須學會如何在傳統環境下進行輸入與輸出：
-    * `input()` $\rightarrow$ 等同於 Streamlit 的 `st.text_input()`
-    * `print()` $\rightarrow$ 等同於 Streamlit 的 `st.write()`
+    * `input()` 等同於 Streamlit 的 `st.text_input()`
+    * `print()` 等同於 Streamlit 的 `st.write()`
     """)
     
     st.code("""
@@ -428,14 +428,14 @@ print("Hello", end="")
 print("World")
 # 畫面會印出: HelloWorld (接在一起，沒有換行)
     """, language="python")
-
-# ==========================================
-# 課程收尾
-# ==========================================
 st.markdown("""
 ### 🧭 實作題目：[買鉛筆](https://zerojudge.tw/ShowProblem?problemid=d827)
 ### 🧭 實作題目：[Hey Jude](https://zerojudge.tw/ShowProblem?problemid=c185)
 ### 🧭 實作題目：[中華民國萬萬歲](https://zerojudge.tw/ShowProblem?problemid=d049)""")
+
+# ==========================================
+# 課程收尾
+# ==========================================
 st.markdown("---")
 st.subheader("🏁 課程收尾：第一課成果驗收與 APCS 心態建立")
 st.success("""
