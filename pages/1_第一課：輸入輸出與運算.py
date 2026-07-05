@@ -17,9 +17,54 @@ st.markdown("""
 """)
 
 # ==========================================
-# 知識點一
+# 新增：知識點零（變數與型別基本功）
 # ==========================================
-with st.expander("🧭 知識點一：輸入資料，輸出加料後的資料", expanded=True):
+with st.expander("🧭 知識點零：認識變數、基本型別與顯示魔法", expanded=True):
+    st.markdown("""
+    在開始讓網頁動起來之前，我們要先學會怎麼把資料交給電腦保存。
+    在程式裡，我們用**「變數」**來存放資料，它就像一個貼了標籤的紙箱。而箱子裡裝的資料，主要有三大基礎型別：
+    * **整數 (`int`)**：沒有小數點的數字，例如：`18`、`100`。
+    * **浮點數 (`float`)**：有小數點的數字，例如：`3.14`、`65.5`。
+    * **字串 (`str`)**：任何純文字，**一定要用引號（單或雙）包起來**，例如：`"闕老師"`。
+    
+    Streamlit 提供了很多種把這些箱子「秀在網頁上」的精美魔法：
+    * `st.write()`：萬用顯示器，什麼都可以丟給它印。
+    * `st.info()`：藍色的資訊提示框，適合放一般公告。
+    * `st.success()`：綠色的成功提示框，適合放答對、過關的訊息。
+    """)
+    
+    st.markdown("##### 📄 範例代碼：變數的靜態排列組合")
+    st.code("""
+import streamlit as st
+
+# 準備三個不同型別的紙箱（變數）
+teacher_name = "闕河正"  # 字串 (str)
+lesson_number = 1       # 整數 (int)
+pass_rate = 99.9        # 浮點數 (float)
+
+# 使用不同的網頁元件秀出來
+st.write(teacher_name)
+st.info(lesson_number)
+st.success(pass_rate)
+    """, language="python")
+    
+    st.markdown("##### 📝 互動成果秀：老師的超能力看板")
+    st.caption("下方是電腦讀取變數後，直接為你渲染出來的網頁元件效果：")
+    
+    # 實際執行給學生看
+    teacher_name = "闕河正"
+    lesson_number = 1
+    pass_rate = 99.9
+    
+    st.write(f"👨‍🏫 負責教授這堂課的老師是：{teacher_name}")
+    st.info(f"📚 目前正在進行第 {lesson_number} 課")
+    st.success(f"🔥 本課學生的專注度高達 {pass_rate}% ！")
+
+
+# ==========================================
+# 知識點一（由原代碼調整 expanded=False）
+# ==========================================
+with st.expander("🧭 知識點一：輸入資料，輸出加料後的資料", expanded=False):
     st.markdown("""
     在程式的世界裡，最核心的本質就是**處理資料**。我們會把資料「輸入」給電腦，電腦處理完後再「輸出」給我們。
     * **輸入指令**：`st.text_input("提示文字")` — 這會在網頁上產生一個讓你打字的輸入框。
@@ -36,26 +81,46 @@ st.write("Hello ! " + name)
     st.markdown("##### 📝 互動實作練習：Hey World")
     st.caption("題目需求：提示使用者輸入「你今天最想去的地方」，並在網頁上輸出「Hey! 讓我們一起去 [地點] 冒險吧！」。")
     
-    # 讓學生實際操作的互動區
     place = st.text_input("你今天最想去的地方是？", placeholder="例如：日本")
     if place:
         st.success(f"Hey! 讓我們一起去 {place} 冒險吧！")
 
 # ==========================================
-# 知識點二
+# 知識點二（已修改：帶出 f-string 的迫切需求與痛點）
 # ==========================================
-with st.expander("🧭 知識點二：字串變數、引號魔法與 f-string 格式化"):
+with st.expander("🧭 知識點二：引號魔法與 f-string 的迫切需求"):
     st.markdown("""
-    1. **變數**：就像一個貼了標籤的「紙箱」，用來存放資料。
-    2. **字串 (String)**：任何「純文字」都叫做字串。必須用引號包起來。
-    3. **單雙引號混合**：如果字串內有單引號，外面就用雙引號 ` "I'm Python learner." `；反之則外面用單引號。
-    4. **高級加工技巧：f-string**：字串前面加一個 `f`，就可以在字串內用 `{變數名稱}` 直接帶入變數！
+    當我們想要把「文字」和「數字變數」混合在一起輸出時，初學者最常使用 `+` 號來拼接，但這會觸發**超級大災難**！
     """)
     
-    st.markdown("##### 📄 範例代碼：特製名片生成器")
+    st.markdown("##### ❌ 傳統拼接的痛苦痛點（引發大報錯）")
+    st.markdown("假設你想印出：`第 1 課萬歲`，你可能會這樣寫：")
+    st.code("""
+# 這樣寫會大崩潰！
+num = 1
+st.write("第 " + num + " 課萬歲") 
+# 🔴 Error: Can only concatenate str (not "int") to str
+# 電腦會生氣地說：文字和數字是不同生物，不能用 + 號黏在一起！
+    """, language="python")
+    
+    st.markdown("""
+    為了成功輸出，你必須強迫自己寫出極其痛苦、充滿括號的**強制轉型**：
+    `st.write("第 " + str(num) + " 課萬歲")` (超級難看又容易少括號！)
+    """)
+    
+    st.markdown("""
+    ### 👑 解救世人的終極魔法：f-string 格式化
+    只要在字串的引號外面加一個 `f`，你就可以在字串內直接用 `{變數名稱}` 帶入任何資料！
+    不管是數字、小數還是文字，**Python 會在後台自動幫你轉型、完美融合**，再也不用寫 `+` 號跟 `str()` 了！
+    
+    另外記得**單雙引號混合原則**：如果字串內有雙引號，外面就用單引號包住，反之亦然。
+    """)
+    
+    st.markdown("##### 📄 範例代碼：特製名片生成器（體驗 f-string 的優雅）")
     st.code("""
 title = st.text_input("請輸入你的職稱：")
 user_name = st.text_input("請輸入你的名字：")
+# 數字或文字都能直接塞進 {} 裡面，乾淨俐落！
 st.write(f"歡迎光臨！這位是我們團隊的 {title}，名字叫做 '{user_name}'。")
     """, language="python")
     
@@ -124,7 +189,6 @@ if taiwan_year_str:
 with st.expander("🧭 知識點五：運算元大全與優先順序"):
     st.markdown("### Python 常用數學運算元表")
     
-    # 建立表格
     st.table([
         {"運算元": "**", "功能": "次方 (冪運算)", "範例": "2 ** 3", "結果": "8"},
         {"運算元": "*", "功能": "乘法", "範例": "3 * 4", "結果": "12"},
@@ -145,7 +209,6 @@ with st.expander("🧭 知識點五：運算元大全與優先順序"):
     
     st.markdown("### 📝 本節必刷實作例題（APCS 基本邏輯奠基）")
     
-    # 實作題一
     st.markdown("##### 🛠️ 題一：直角三角形求斜邊（畢氏定理）")
     st.caption("公式：斜邊 = (邊1**2 + 邊2**2)**0.5")
     col1, col2 = st.columns(2)
@@ -157,7 +220,6 @@ with st.expander("🧭 知識點五：運算元大全與優先順序"):
         ans1 = (float(side1)**2 + float(side2)**2)**0.5
         st.info(f"計算出來的斜邊長度為：`{ans1}`")
         
-    # 實作題二
     st.markdown("##### 🛠️ 題二：等差數列求總和（梯形公式）")
     st.caption("公式：總和 = (首項 + 末項) * 項數 / 2")
     c1, c2, c3 = st.columns(3)
@@ -168,7 +230,6 @@ with st.expander("🧭 知識點五：運算元大全與優先順序"):
         ans2 = (int(a1) + int(an)) * int(n) / 2
         st.info(f"等差數列總和為：`{ans2}`")
 
-    # 實作題三
     st.markdown("##### 🛠️ 題三：華氏溫度轉攝氏溫度")
     st.caption("公式：攝氏 = (華氏 - 32) * 5 / 9")
     f_deg = st.text_input("請輸入華氏溫度：", value="98.6")
@@ -176,7 +237,6 @@ with st.expander("🧭 知識點五：運算元大全與優先順序"):
         c_deg = (float(f_deg) - 32) * 5 / 9
         st.info(f"華氏 {f_deg}°F 換算成攝氏為：`{c_deg:.2f}`°C")
 
-    # 實作題4
     st.markdown("""
     ### 🧭 實作題目：[買鉛筆](https://zerojudge.tw/ShowProblem?problemid=d827)
     ### 🧭 實作題目：[Hey Jude](https://zerojudge.tw/ShowProblem?problemid=c185)
@@ -192,7 +252,7 @@ with st.expander("🧭 知識點六：型態大融合——強制轉型與 f-str
     * `float(資料)`：強迫轉成**浮點數（小數）**。
     * `str(資料)`：強迫轉成**字串（文字）**。
     
-    只要使用 **f-string**，Python 會在背後自動幫你把 `{}` 裡面的數字轉成字串輸出，不用再痛苦地寫 `+ str(answer)` 了！
+    正如我們在知識點二所體驗到的，只要使用 **f-string**，Python 會在背後自動幫你把 `{}` 裡面的數字轉成字串輸出，不用再痛苦地寫 `+ str(answer)` 了！
     """)
     
     st.markdown("##### 📄 範例：綜合 BMI 計算器")
