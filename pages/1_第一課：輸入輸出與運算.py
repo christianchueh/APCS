@@ -17,49 +17,51 @@ st.markdown("""
 """)
 
 # ==========================================
-# 新增：知識點零（變數與型別基本功）
+# 優化後的知識點零（直擊型別靈魂，拒絕無感！）
 # ==========================================
 with st.expander("🧭 知識點零：認識變數、基本型別與顯示魔法", expanded=True):
     st.markdown("""
-    在開始讓網頁動起來之前，我們要先學會怎麼把資料交給電腦保存。
-    在程式裡，我們用**「變數」**來存放資料，它就像一個貼了標籤的紙箱。而箱子裡裝的資料，主要有三大基礎型別：
-    * **整數 (`int`)**：沒有小數點的數字，例如：`18`、`100`。
-    * **浮點數 (`float`)**：有小數點的數字，例如：`3.14`、`65.5`。
-    * **字串 (`str`)**：任何純文字，**一定要用引號（單或雙）包起來**，例如：`"闕老師"`。
-    
-    Streamlit 提供了很多種把這些箱子「秀在網頁上」的精美魔法：
-    * `st.write()`：萬用顯示器，什麼都可以丟給它印。
-    * `st.info()`：藍色的資訊提示框，適合放一般公告。
-    * `st.success()`：綠色的成功提示框，適合放答對、過關的訊息。
+    在程式的世界裡，所有資料都有自己的**「型態（Type）」**。就像水、冰塊、水蒸氣雖然都是水，但物理狀態完全不同！
+    我們今天準備三個不同狀態的變數紙箱：
     """)
     
-    st.markdown("##### 📄 範例代碼：變數的靜態排列組合")
     st.code("""
-import streamlit as st
-
-# 準備三個不同型別的紙箱（變數）
-teacher_name = "闕河正"  # 字串 (str)
-lesson_number = 1       # 整數 (int)
-pass_rate = 99.9        # 浮點數 (float)
-
-# 使用不同的網頁元件秀出來
-st.write(teacher_name)
-st.info(lesson_number)
-st.success(pass_rate)
+# 這是三種完全不同的生物！
+teacher_name = "闕河正"  # 1. 字串 (str) -> 必須加引號的純文字
+lesson_number = 1       # 2. 整數 (int) -> 沒有小數點的純數字
+pass_rate = 99.9        # 3. 浮點數 (float) -> 帶有小數點的精準數字
     """, language="python")
     
-    st.markdown("##### 📝 互動成果秀：老師的超能力看板")
-    st.caption("下方是電腦讀取變數後，直接為你渲染出來的網頁元件效果：")
+    st.markdown("### 🪄 魔法展示：當我們把「原汁原味」的變數直接丟給網頁元件...")
     
-    # 實際執行給學生看
     teacher_name = "闕河正"
     lesson_number = 1
     pass_rate = 99.9
     
-    st.write(f"👨‍🏫 負責教授這堂課的老師是：{teacher_name}")
-    st.info(f"📚 目前正在進行第 {lesson_number} 課")
-    st.success(f"🔥 本課學生的專注度高達 {pass_rate}% ！")
+    # 用 Columns 做出並排對比，視覺衝擊更強
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown("##### 💬 字串丟給 `st.write`")
+        st.write(teacher_name)
+        st.caption(f"💻 電腦判定型別：`{type(teacher_name).__name__}`")
+        
+    with col2:
+        st.markdown("##### 🔹 整數丟給 `st.info`")
+        st.info(lesson_number)
+        st.caption(f"💻 電腦判定型別：`{type(lesson_number).__name__}`")
+        
+    with col3:
+        st.markdown("##### 🟢 浮點數丟給 `st.success`")
+        st.success(pass_rate)
+        st.caption(f"💻 電腦判定型別：`{type(pass_rate).__name__}`")
 
+    st.markdown("---")
+    st.markdown("""
+    > 💡 **老師敲黑板**：看到了嗎？我們**完全沒有手動打字**，只是把變數箱子丟過去，Streamlit 就會根據不同的資料型別把它們渲染出來！
+    > 
+    > 下面的「知識點二」就會告訴你，如果我們不顧型別強行把他們 `+` 在一起，電腦會怎麼對你發脾氣！
+    """)
 
 # ==========================================
 # 知識點一（由原代碼調整 expanded=False）
