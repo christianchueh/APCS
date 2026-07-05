@@ -17,50 +17,89 @@ st.markdown("""
 """)
 
 # ==========================================
-# 優化後的知識點零（直擊型別靈魂，拒絕無感！）
+# 徹底翻修：知識點零（程式與結果雙向對照，提供複製範例）
 # ==========================================
 with st.expander("🧭 知識點零：認識變數、基本型別與顯示魔法", expanded=True):
     st.markdown("""
-    在程式的世界裡，所有資料都有自己的**「型態（Type）」**。就像水、冰塊、水蒸氣雖然都是水，但物理狀態完全不同！
-    我們今天準備三個不同狀態的變數紙箱：
+    在程式的世界裡，所有資料都有自己的**「型態（Type）」**。
+    我們用變數（紙箱）把資料裝起來後，可以直接把箱子拿去組合、排列，並用 `st.write` 等元件秀在網頁上。
+    
+    請嘗試**複製（Copy）**下方的範例程式碼，貼到你的專案中跑跑看，感受一下背後的程式碼與網頁畫面的神奇對應！
     """)
     
+    # ---------------------------------------------------------
+    # 區塊一：字串（純文字）的組合
+    # ---------------------------------------------------------
+    st.markdown("### 💬 1. 字串型別 (str) 的組合與輸出")
+    st.markdown("當兩個變數都是「字串」時，我們可以用 `+` 號把文字像磁鐵一樣黏起來！")
+    
+    # 給學生複製的範例
     st.code("""
-# 這是三種完全不同的生物！
-teacher_name = "闕河正"  # 1. 字串 (str) -> 必須加引號的純文字
-lesson_number = 1       # 2. 整數 (int) -> 沒有小數點的純數字
-pass_rate = 99.9        # 3. 浮點數 (float) -> 帶有小數點的精準數字
+# 【範例一：字串拼貼】請複製這段到你的程式中
+first_name = "河正"
+last_name = "闕"
+
+# 用 + 號把文字黏起來，還可以順便加上驚嘆號！
+st.write(last_name + first_name + "老師好帥！")
     """, language="python")
     
-    st.markdown("### 🪄 魔法展示：當我們把「原汁原味」的變數直接丟給網頁元件...")
+    # 後台實際執行的網頁結果（加個框讓學生知道這是畫面的呈現）
+    st.markdown("**💻 網頁實際渲染效果：**")
+    first_name = "河正"
+    last_name = "闕"
+    st.write(last_name + first_name + "老師好帥！")
     
-    teacher_name = "闕河正"
-    lesson_number = 1
-    pass_rate = 99.9
+    st.markdown("---")
     
-    # 用 Columns 做出並排對比，視覺衝擊更強
-    col1, col2, col3 = st.columns(3)
+    # ---------------------------------------------------------
+    # 區塊二：整數（純數字）的運算
+    # ---------------------------------------------------------
+    st.markdown("### 🔢 2. 整數型別 (int) 的組合與輸出")
+    st.markdown("當變數是「數字」時，丟給 `st.write` 或是 `st.info`，電腦會進行真正的數學運算，而不是把字黏在一起喔！")
     
-    with col1:
-        st.markdown("##### 💬 字串丟給 `st.write`")
-        st.write(teacher_name)
-        st.caption(f"💻 電腦判定型別：`{type(teacher_name).__name__}`")
-        
-    with col2:
-        st.markdown("##### 🔹 整數丟給 `st.info`")
-        st.info(lesson_number)
-        st.caption(f"💻 電腦判定型別：`{type(lesson_number).__name__}`")
-        
-    with col3:
-        st.markdown("##### 🟢 浮點數丟給 `st.success`")
-        st.success(pass_rate)
-        st.caption(f"💻 電腦判定型別：`{type(pass_rate).__name__}`")
+    st.code("""
+# 【範例二：整數數學題】請複製這段到你的程式中
+math_score = 95
+bonus_score = 5
+
+# 電腦會先偷偷幫你算出 95 + 5 = 100，再用藍色資訊框秀出來！
+st.info(math_score + bonus_score)
+    """, language="python")
+    
+    st.markdown("**💻 網頁實際渲染效果：**")
+    math_score = 95
+    bonus_score = 5
+    st.info(math_score + bonus_score)
+    
+    st.markdown("---")
+    
+    # ---------------------------------------------------------
+    # 區塊三：浮點數（小數）的組合
+    # ---------------------------------------------------------
+    st.markdown("### 🟢 3. 浮點數型別 (float) 的組合與輸出")
+    st.markdown("帶有小數點的數字叫浮點數。我們可以用綠色的 `st.success` 來慶祝精準的計算結果！")
+    
+    st.code("""
+# 【範例三：浮點數計算】請複製這段到你的程式中
+current_height = 175.2
+target_height = 180.0
+
+# 計算距離目標還差幾公分
+gap = target_height - current_height
+st.success(gap)
+    """, language="python")
+    
+    st.markdown("**💻 網頁實際渲染效果：**")
+    current_height = 175.2
+    target_height = 180.0
+    gap = target_height - current_height
+    st.success(gap)
 
     st.markdown("---")
     st.markdown("""
-    > 💡 **老師敲黑板**：看到了嗎？我們**完全沒有手動打字**，只是把變數箱子丟過去，Streamlit 就會根據不同的資料型別把它們渲染出來！
+    > 💡 **思考題**：請大家觀察一下，上面三個範例中，我們都是**純字串與純字串組合**，或是**純數字與純數字計算**。
     > 
-    > 下面的「知識點二」就會告訴你，如果我們不顧型別強行把他們 `+` 在一起，電腦會怎麼對你發脾氣！
+    > 如果今天我想不開，硬要把【字串的名字】去加上【整數的分數】（例如：`last_name + math_score`），會發生什麼事呢？點開下方的**知識點二**，讓我們一起來看看恐怖的命案現場！
     """)
 
 # ==========================================
