@@ -122,7 +122,7 @@ with st.expander("🧭 知識點一：像高鐵一樣一路到底——循序結
     """)
     
     # 使用網頁最穩定的 CSS Flexbox 呈現純 HTML 循序流程圖
-    st.components.v1.html("""
+    st.iframe("""
     <div style="display: flex; flex-direction: column; align-items: center; font-family: sans-serif; gap: 10px; padding: 10px;">
         <div style="background-color: #bfff00; border: 2px solid #333; padding: 8px 20px; border-radius: 20px; font-weight: bold; color: black;">開始</div>
         <div style="font-size: 18px; color: #555;">⬇️</div>
