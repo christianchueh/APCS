@@ -48,7 +48,7 @@ st.markdown("---")
 # 🟢 核心觀念 2：陣列排序（直接呈現）
 # ==========================================
 st.header("⚡ 2. 競賽核心：排序 (sort, sorted)")
-st.markdown("排序是 APCS 的大熱門。Python 內建的 Timsort 演算法時間複雜度為 $O(N \log N)$，在競賽中非常高效。")
+st.markdown("排序是 APCS 的大熱門。Python 內建的 Timsort 演算法時間複雜度為 $O(N log N)$，在競賽中非常高效。")
 
 # 排序內部我們稍微用小 Tab 區分不同層次的排序技巧，保持畫面整潔
 sub_tab1, sub_tab2, sub_tab3 = st.tabs(["基本排序", "自訂條件排序 (Lambda)", "自訂二維陣列排序"])
