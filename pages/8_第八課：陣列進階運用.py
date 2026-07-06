@@ -236,7 +236,7 @@ with tab_e313:
 with tab_f605:
     st.subheader("🔗 [ZeroJudge f605 購買力題目連結](https://zerojudge.tw/ShowProblem?problemid=f605)")
     st.info(
-        "**解題想法引導**：\n"
+        r"**解題想法引導**：\n"
         "1. 題目給定 $N$ 物品在 3 個不同時間點的價格，以及一個門檻值 $D$。\n"
         "2. 對於每樣物品，我們必須檢查它的「最高價格」與「最低價格」之差是否 $\ge D$。\n"
         "3. 如果滿足條件，該物品的購買成本為這 3 個價格的「平均值」（題目保證能整除 `// 3`）。\n"
