@@ -436,7 +436,7 @@ with st.expander("🧭 知識點三(下)：如果...就...——單向條件式 
     """)
     
     # 使用純網頁樣式取代會漏線的菱形，確保結構方正清晰、100% 不出錯
-    st.components.v1.html("""
+    st.iframe("""
     <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto; border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: #fafafa; color: black;">
         <div style="text-align: center; font-weight: bold; background: #fffa00; padding: 8px; border: 1px solid #cc0; border-radius: 4px;">❓ 檢查條件 (Condition)</div>
         <div style="display: flex; justify-content: space-between; padding: 5px 40px; font-weight: bold; color: blue;">
@@ -506,7 +506,7 @@ with st.expander("🧭 知識點四：人生不是二分法——雙向 (If-Else
     """)
     
     # 採用多層表格區塊，完美展現 if -> elif -> else 的樹狀決策分流
-    st.components.v1.html("""
+    st.iframe("""
     <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; border: 1px solid #ccc; padding: 15px; border-radius: 8px; background-color: #fff; color: black; font-size: 14px;">
         <div style="background: #ff9900; color: white; padding: 8px; text-align: center; font-weight: bold; border-radius: 4px;">第一關：if 條件 1 成立？</div>
         <div style="display: flex; margin-top: 8px;">
