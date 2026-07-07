@@ -121,6 +121,21 @@ for i in range(1, n + 1):
     st.info("💡 **進階思考小任務**：如果今天想要把三角形「倒過來印」（第一行 4 顆、最後一行 1 顆），`range()` 的三個密碼應該要怎麼填呢？試著用剛剛學到的「倒著來」刀法想想看吧！")
 
 
+    loop_t3, loop_t4, loop_t5, loop_t6 = st.tabs([
+        "m448. n顆星星", "c418. 左下三角", "c419. 右下三角", "c420. bert三角形"
+    ])
+    with loop_t3:
+        st.markdown("[🔗 m448. n顆星星](https://zerojudge.tw/ShowProblem?problemid=m448)")
+        st.info("💡 闕老師提示：輸入整數 n，利用 `for` 迴圈連續印出 n 個星星。在 Python 裡，`print('*' * i)` 會有奇效喔！")
+    with loop_t4:
+        st.markdown("[🔗 c418. 📊 雙重迴圈圖形題(一)](https://zerojudge.tw/ShowProblem?problemid=c418)")
+        st.info("💡 闕老師提示：直角三角形圖形。第 1 行印 1 顆，第 2 行印 2 顆... 第 n 行印 n 顆。利用單層迴圈配合字串乘法，或雙層迴圈控制即可。")
+    with loop_t5:
+        st.markdown("[🔗 c419. 📊 雙重迴圈圖形題(二)](https://zerojudge.tw/ShowProblem?problemid=c419)")
+        st.info("💡 闕老師提示：右下角的直角三角形。第 i 行需要先印出 `n - i` 個空白，再印出 `i` 個星星。")
+    with loop_t6:
+        st.markdown("[🔗 c420. 📊 bert三角形](https://zerojudge.tw/ShowProblem?problemid=c420)")
+        st.info("💡 闕老師提示：經典的金字塔型三角形。每一行的星星數是奇數（1, 3, 5...），前面要墊適當數量的空白。")
 # ==========================================
 # 🔥 全新補強核心：用 range 配合索引提取清單資料
 # ==========================================
@@ -241,7 +256,7 @@ print(ans) # 輸出 40320
     st.markdown("### 🏆 實戰特訓：ZeroJudge 基礎迴圈題庫（含經典 N 次結構）")
     
     loop_t1, loop_t2, loop_t3, loop_t4, loop_t5, loop_t6 = st.tabs([
-        "b971. 等差數列", "a005. Eva的作業", "m448. n顆星星", "c418. 左下三角", "c419. 右下三角", "c420. bert三角形"
+        "b971. 等差數列", "a005. Eva的作業", "b294. 經濟大恐荒", "b884. 電腦教室的傑克", "e339. 前綴和練習", "e340. 差分練習"
     ])
     
     with loop_t1:
@@ -251,18 +266,22 @@ print(ans) # 輸出 40320
         st.markdown("[🔗 a005. Eva 的回家作業](https://zerojudge.tw/ShowProblem?problemid=a005)")
         st.warning("🔥 經典的「重複 N 次」結構題！")
         st.info("💡 闕老師提示：先讀入一個數字 N，代表有幾組作業。接著用 `for i in range(N):` 連續讀取四個數字，判斷是等差數列還是等比數列，算出第五項並印出。")
-    with loop_t3:
-        st.markdown("[🔗 m448. n顆星星](https://zerojudge.tw/ShowProblem?problemid=m448)")
-        st.info("💡 闕老師提示：輸入整數 n，利用 `for` 迴圈連續印出 n 個星星。在 Python 裡，`print('*' * i)` 會有奇效喔！")
+    with loop_t2:
+        st.markdown("[🔗 b294. 經濟大恐荒](https://zerojudge.tw/ShowProblem?problemid=b294)")
+        st.warning("🔥 RANGE！")
+        st.info("💡 闕老師提示：先讀入一個數字 N，代表要吃幾天饅頭。接著收一行數字代表每天吃幾顆饅頭。")
     with loop_t4:
-        st.markdown("[🔗 c418. 📊 雙重迴圈圖形題(一)](https://zerojudge.tw/ShowProblem?problemid=c418)")
-        st.info("💡 闕老師提示：直角三角形圖形。第 1 行印 1 顆，第 2 行印 2 顆... 第 n 行印 n 顆。利用單層迴圈配合字串乘法，或雙層迴圈控制即可。")
+        st.markdown("[🔗 b884. 電腦教室的傑克](https://zerojudge.tw/ShowProblem?problemid=b884)")
+        st.warning("🔥 經典的「重複 N 次」結構題！")
+        st.info("💡 闕老師提示：先讀入一個數字 N，代表有幾組測資。接著用 `for i in range(N):` 每次收取兩個數字。")
     with loop_t5:
-        st.markdown("[🔗 c419. 📊 雙重迴圈圖形題(二)](https://zerojudge.tw/ShowProblem?problemid=c419)")
-        st.info("💡 闕老師提示：右下角的直角三角形。第 i 行需要先印出 `n - i` 個空白，再印出 `i` 個星星。")
+        st.markdown("[🔗 e339. 前綴和練習](https://zerojudge.tw/ShowProblem?problemid=e339)")
+        st.warning("🔥 假設資料在D清單，前綴和在P清單，則P[i] = D[i] + P[i-1] (i > 0)")
+        st.info("💡 闕老師提示：先讀入一個數字 N，代表下一行有幾個數字D。接著用 `for i in range(N):` 陸續將D清單中的資料累積輸出(可直接輸出不用存到一個新的清單)。")
     with loop_t6:
-        st.markdown("[🔗 c420. 📊 bert三角形](https://zerojudge.tw/ShowProblem?problemid=c420)")
-        st.info("💡 闕老師提示：經典的金字塔型三角形。每一行的星星數是奇數（1, 3, 5...），前面要墊適當數量的空白。")
+        st.markdown("[🔗 e340. 差分練習](https://zerojudge.tw/ShowProblem?problemid=e340)")
+        st.warning("🔥 假設在D清單，前綴和在P清單，D[i] = P[i] - P[i-1] (i > 0) ")
+        st.info("💡 闕老師提示：先讀入一個數字 N，代表下一行有幾個數字D。接著用 `for i in range(N):` 陸續將D清單中的資料累積輸出(可直接輸出不用存到一個新的清單)。")
 
 
 # ==========================================
