@@ -195,6 +195,7 @@ for i in range(len(words)):
     st.markdown("---")
     st.markdown("### 🏆 解題系統實作挑戰")
     st.markdown("準備好了嗎？點擊下方連結，挑戰這道經典的清單與迴圈綜合應用題：")
+    st.markdown("小提示：本題輸入有很多多餘的空白，收資料的時候記得input().strip()來去除雜訊")
     st.markdown("👉 [b762. 英國聯蒙 (ZeroJudge)](https://zerojudge.tw/ShowProblem?problemid=b762)")
 
 # ==========================================
