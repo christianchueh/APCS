@@ -36,6 +36,7 @@ with st.expander("🧭 知識點零：認識變數、基本型別與顯示魔法
     # 給學生複製的範例
     st.code("""
 # 【範例一：字串拼貼】請複製這段到你的程式中
+import streamlit as st
 first_name = "河正"
 last_name = "闕"
 
