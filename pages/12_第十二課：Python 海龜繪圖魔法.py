@@ -133,9 +133,8 @@ for i in range(72):
     r = random.randint(0, 255)
     g = random.randint(0, 255)
     b = random.randint(0, 255)
-    color_hex = f"#{r:02x}{g:02x}{b:02x}"  # 組合出色碼
     
-    t.color(color_hex)   # 換上隨機顏色
+    t.color(r, g, b)   # 換上隨機顏色
     
     # --- 繪畫動作 ---
     t.circle(100)        # 畫一個半徑 100 的圓
