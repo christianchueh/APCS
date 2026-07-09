@@ -455,7 +455,7 @@ print(match)
 # 闕老師專用後台：可摺疊的隱藏解答密碼表
 with st.sidebar.expander("🔑 闕老師專用：自主特訓標準答案"):
     st.write("1. (B) GOR")
-    st.write("2. (D) 22")
+    st.write("2. (C) 21")
     st.write("3. (C) 1")
     st.write("4. (B) 2")
     st.write("5. (B) False")
